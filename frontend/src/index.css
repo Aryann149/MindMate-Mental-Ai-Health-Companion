@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-base-900 text-slate-100 font-body antialiased;
+    background-image: theme("backgroundImage.aurora");
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-lavender-500/40 text-white;
+  }
+  /* Visible keyboard focus everywhere, incl. inside glass cards */
+  :focus-visible {
+    outline: 2px solid theme("colors.lavender.400");
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass;
+  }
+  .glass-input {
+    @apply bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100
+      placeholder:text-slate-500 focus:border-lavender-400/60 focus:bg-white/10 outline-none transition-colors;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold
+      bg-gradient-to-r from-lavender-500 to-bloom-500 text-white shadow-glow
+      hover:brightness-110 active:scale-[0.98] transition disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold
+      bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10 active:scale-[0.98] transition;
+  }
+  .label-eyebrow {
+    @apply text-xs uppercase tracking-[0.2em] text-lavender-300/80 font-semibold;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
